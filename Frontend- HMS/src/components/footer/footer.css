@@ -1,0 +1,21 @@
+.footerstyle{ 
+    justify-content: center;
+    position: fixed;
+    bottom: 0;
+    width: 100% ;
+    height:8%;
+    padding-top: 20px;
+    display: flex;
+    background-color:whitesmoke;
+  }
+  
+  @media screen and (max-width: 780px){
+   
+     .footer{
+      flex-direction: column-reverse;
+      ;
+     }
+  }
+     
+
+ 
