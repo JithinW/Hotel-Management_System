@@ -1,9 +1,14 @@
 
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import UserContext from "../../context/UserContext";
 
 function UserHome() {
   const { user } = useContext(UserContext);
+
+  useEffect(() => {
+    console.log()
+  }, [])
+  
   return (
     <>
       <div className="s002">

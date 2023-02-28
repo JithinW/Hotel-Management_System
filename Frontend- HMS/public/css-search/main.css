@@ -1513,7 +1513,7 @@ span.flatpickr-weekday {
 }
 
 .s002 {
-  min-height: 60vh;
+  min-height: 27rem;
   display: -ms-flexbox;
   display: flex;
   -ms-flex-pack: center;
@@ -1524,12 +1524,12 @@ span.flatpickr-weekday {
   background: url("../images/Searchs_002.png");
   background-size: cover;
   background-position: center center;
-  padding: 8rem 10rem 1rem 10rem;
+  padding-top: 18rem;
 }
 
 .s002 form {
   width: 100%;
-  max-width: 1190px;
+  max-width: 55rem;
 }
 
 .s002 form legend {
