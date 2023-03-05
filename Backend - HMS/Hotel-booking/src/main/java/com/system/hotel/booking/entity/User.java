@@ -10,7 +10,6 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import com.system.hotel.booking.common.UserRole;
 
-
 @Entity
 @Table(name = "users")
 public class User {
@@ -31,6 +30,19 @@ public class User {
     @Enumerated(EnumType.STRING)
     @Column(name = "role", nullable = false)
     private UserRole role;
+    
+	public User() {
+		super();
+	}
+    
+	public User(Long id, String email, String password, String name, UserRole role) {
+		super();
+		this.id = id;
+		this.email = email;
+		this.password = password;
+		this.name = name;
+		this.role = role;
+	}
 
 	public Long getId() {
 		return id;

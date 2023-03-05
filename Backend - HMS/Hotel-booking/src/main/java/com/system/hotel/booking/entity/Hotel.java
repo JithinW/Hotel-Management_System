@@ -1,12 +1,22 @@
 package com.system.hotel.booking.entity;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Size;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "hotel")
@@ -22,12 +32,31 @@ public class Hotel {
     
     @Size(min = 10, max = 10)
     private String phone;
+    
+    private String country;
 
     private String location;
 
     private String address;
 
-    private String img;
+    private String image;
+    
+    @JsonIgnore
+    @OneToMany(mappedBy = "hotel", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<HotelRoomType> roomTypes;
+    
+    @JsonIgnore
+    @OneToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
 
 	public Long getId() {
 		return id;
@@ -39,6 +68,22 @@ public class Hotel {
 
 	public String getName() {
 		return name;
+	}
+
+	public String getCountry() {
+		return country;
+	}
+
+	public void setCountry(String country) {
+		this.country = country;
+	}
+
+	public List<HotelRoomType> getRoomTypes() {
+		return roomTypes;
+	}
+
+	public void setRoomTypes(List<HotelRoomType> roomTypes) {
+		this.roomTypes = roomTypes;
 	}
 
 	public void setName(String name) {
@@ -78,11 +123,11 @@ public class Hotel {
 	}
 
 	public String getImage() {
-		return img;
+		return image;
 	}
 
 	public void setImage(String image) {
-		this.img = image;
+		this.image = image;
 	}
 
 }
