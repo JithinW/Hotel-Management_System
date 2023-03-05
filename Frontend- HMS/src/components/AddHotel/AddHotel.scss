@@ -1,0 +1,44 @@
+.add-hotel {
+
+    .form {
+        padding-top: 20rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 400px;
+        margin: auto;
+    }
+
+    label {
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+
+    input {
+        padding: 5px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        margin-bottom: 10px;
+        width: 100%;
+    }
+
+    input[type="file"] {
+        padding: 5px 0;
+        margin-bottom: 20px;
+    }
+
+    .submit-btn[type="submit"] {
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top: 20px;
+    }
+
+    .submit-btn[type="submit"]:hover {
+        background-color: #3e8e41;
+    }
+
+}

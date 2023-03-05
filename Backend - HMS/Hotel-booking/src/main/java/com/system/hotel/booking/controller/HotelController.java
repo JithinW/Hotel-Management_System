@@ -19,10 +19,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import com.system.hotel.booking.entity.Hotel;
-import com.system.hotel.booking.entity.User;
 import com.system.hotel.booking.exception.ResourceNotFoundException;
 import com.system.hotel.booking.services.HotelService;
-import com.system.hotel.booking.utils.ImageUploadDownloadUtil;
+import com.system.hotel.booking.services.ImageUploadDownloadUtil;
 
 @RestController
 @CrossOrigin
@@ -34,31 +33,23 @@ public class HotelController {
 	public HotelController(HotelService hotelService) {
 		this.hotelService = hotelService;
 	}
-	
+
 	@PostMapping("/createHotel")
 	public ResponseEntity<String> createHotel(@ModelAttribute Hotel hotel,
-	        @RequestParam(value = "img", required = false) MultipartFile img) throws IOException {
-	    try {
-	        Hotel savedHotel = hotelService.createHotel(hotel);
-	        hotel.setImage(hotel.getId() + img.getOriginalFilename());
-	        ImageUploadDownloadUtil imageUploadUtil = new ImageUploadDownloadUtil();
-	        String imagePath = "Hotel-Images";
-	        imageUploadUtil.uploadImage(savedHotel.getId(), img, imagePath);
-	        User savedUser = hotelService.createHotelUser(savedHotel);
-	        hotel.setUser(savedUser);
-	        hotelService.createHotel(hotel);
-	        return ResponseEntity.ok("Hotel Created Successfully");
-	    }catch (Exception e) {
-	        return ResponseEntity.badRequest().body("Failed to create hotel. " + e.getMessage());
-	    }
+			@RequestParam(value = "img", required = false) MultipartFile img) throws IOException {
+		Hotel savedHotel = hotelService.createHotel(hotel);
+		hotel.setImage(hotel.getId() + img.getOriginalFilename());
+		ImageUploadDownloadUtil imageUploadUtil = new ImageUploadDownloadUtil();
+		imageUploadUtil.uploadImage(savedHotel,img);
+		hotelService.createHotel(hotel);
+		return ResponseEntity.ok("Hotel Created Successfully");
 	}
 	
 	@GetMapping("/getImage/{img}")
 	public ResponseEntity<?> downloadImage(@PathVariable("img") String imgName)
 			throws ResourceNotFoundException, IOException, URISyntaxException {
 		ImageUploadDownloadUtil downloadUtil = new ImageUploadDownloadUtil();
-		String imagePath = "Hotel-Images";
-		Resource resource = downloadUtil.getImageAsResource(imgName, imagePath);
+		Resource resource = downloadUtil.getImageAsResource(imgName);
 		String contentType = "image/png";
 		String headerValue = "attachment; filename=\"" + resource.getFilename() + "\"";
 		return ResponseEntity.ok().contentType(MediaType.parseMediaType(contentType))

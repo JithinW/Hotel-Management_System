@@ -2,7 +2,6 @@ import * as React from "react";
 import { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 import UserContext from "../../context/UserContext";
-import { userIsGuest, userIsHotelAdmin } from "../../utils/utils";
 
 function Header() {
   const { user, setUser } = useContext(UserContext)
@@ -10,21 +9,19 @@ function Header() {
   return (
     <>
       <header>
-        <div className="header-area-main ">
-          <div className="main-header-area-main sticky-show">
+        <div className="header-area ">
+          <div className="main-header-area sticky-show">
             <div className="container-fluid p-0">
               <div className="row align-items-center no-gutters">
                 <div className="col-xl-5 col-lg-6">
                   <div className="main-menu  d-none d-lg-block">
                     <nav>
                       <ul id="navigation">
-                        {user ?
-                          <li>
-                            <NavLink activeClassName="active" to="/home">
-                              Home
-                            </NavLink>
-                          </li> : ''
-                        }
+                        <li>
+                          {/* <NavLink activeClassName="active" to="/home">
+                          Home
+                        </NavLink> */}
+                        </li>
                         {user ? '' :
                           <li>
                             <NavLink activeClassName="active" to="/login">
@@ -38,36 +35,23 @@ function Header() {
                             </NavLink>
                           </li>
                         }
-                        {userIsGuest(user) ?
-                          <li><NavLink activeClassName="active" to="Gallery.html">
-                            My Bookings
-                          </NavLink>
-                          </li> : ''
-                        }
-                        {/* <li><NavLink activeClassName="active" to="Contact.html">
+                        <li><NavLink activeClassName="active" to="Gallery.html">
+                          Gallary
+                        </NavLink>
+                        </li>
+                        <li><NavLink activeClassName="active" to="Contact.html">
                           Contact us
                         </NavLink>
-                        </li> */}
-                        {userIsHotelAdmin(user) ?
-                          <li><NavLink activeClassName="active" to="/addRoomType">
-                            Add Room Type
-                          </NavLink>
-                          </li> : ''
-                        }
+                        </li>
                         {user ?
-                          <li><NavLink activeClassName="active" onClick={() => setUser('')} to="/login">
+                          <li><NavLink activeClassName="active" onClick={()=>setUser('')} to="/login">
                             Log out
                           </NavLink>
                           </li> : ''
                         }
-                        {userIsHotelAdmin(user) ?
-                          <li>
-                            <NavLink activeClassName="active" to="/addRooms">
-                              Add Room
-                            </NavLink>
-                          </li> : ''
-                        }
                         <li></li><li></li><li></li> <li></li>
+                        <li></li>
+                        <li></li>
                       </ul>
                     </nav>
                   </div>
@@ -107,12 +91,12 @@ function Header() {
                 </div> :
                   <div className="col-xl-5 col-lg-4 d-none d-lg-block user-name-right">
                     <div className="book_room">
-                      <div className="user-name" style={{ textTransform: 'uppercase', letterSpacing: '1px' }}>
+                      <div className="user-name" style={{textTransform : 'uppercase', letterSpacing: '1px'}}>
                         {user?.name}
-                        <svg className="icon" style={{ height: '20px' }}>
+                        <svg className="icon" style={{height: '20px'}}>
                           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 24 24">
-                            <path d="M12,12c2.76,0,5-2.24,5-5s-2.24-5-5-5s-5,2.24-5,5S9.24,12,12,12z M12,13.5c-2.33,0-7,1.17-7,3.5v1.5h14v-1.5 C19,14.67,14.33,13.5,12,13.5z" style={{ fill: '#fff' }} />
-                          </svg>
+                          <path d="M12,12c2.76,0,5-2.24,5-5s-2.24-5-5-5s-5,2.24-5,5S9.24,12,12,12z M12,13.5c-2.33,0-7,1.17-7,3.5v1.5h14v-1.5 C19,14.67,14.33,13.5,12,13.5z" style={{fill: '#fff'}} />
+                        </svg>
                         </svg>
                       </div>
                     </div>

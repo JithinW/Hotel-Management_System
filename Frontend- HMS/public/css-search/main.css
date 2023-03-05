@@ -1524,7 +1524,7 @@ span.flatpickr-weekday {
   background: url("../images/Searchs_002.png");
   background-size: cover;
   background-position: center center;
-  padding-top: 20rem;
+  padding-top: 18rem;
 }
 
 .s002 form {
@@ -1543,7 +1543,7 @@ span.flatpickr-weekday {
 
 .s002 form .inner-form {
   background: rgba(0, 0, 0, 0.5);
-  padding: 5px;
+  padding: 16px;
   display: -ms-flexbox;
   display: flex;
   width: 100%;
@@ -1581,7 +1581,7 @@ span.flatpickr-weekday {
 }
 
 .s002 form .inner-form .input-field input {
-  height: 3.2rem;
+  height: 70px;
   background: #fff;
   border-radius: 0;
   border: 0;
@@ -1721,7 +1721,7 @@ span.flatpickr-weekday {
 }
 
 .s002 form .inner-form .input-field.fifth-wrap .btn-search {
-  height: 3.2rem;
+  height: 70px;
   width: 100%;
   background: #009DFF;
   white-space: nowrap;

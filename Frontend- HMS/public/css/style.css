@@ -563,7 +563,7 @@ h3 {
     top: -41px
 }
 
-.header-area-main {
+.header-area {
     position: absolute;
     left: 0;
     right: 0;
@@ -574,81 +574,81 @@ h3 {
 }
 
 @media (max-width: 767px) {
-    .header-area-main {
+    .header-area {
         padding-top: 0
     }
 }
 
 @media (min-width: 768px) and (max-width: 991px) {
-    .header-area-main {
+    .header-area {
         padding-top: 0
     }
 }
 
-.header-area-main .main-header-area-main {
+.header-area .main-header-area {
     padding: 0 150px
 }
 
 @media (max-width: 767px) {
-    .header-area-main .main-header-area-main {
+    .header-area .main-header-area {
         padding: 10px 10px
     }
 }
 
 @media (min-width: 768px) and (max-width: 991px) {
-    .header-area-main .main-header-area-main {
+    .header-area .main-header-area {
         padding: 10px 10px
     }
 }
 
 @media (min-width: 992px) and (max-width: 1200px) {
-    .header-area-main .main-header-area-main {
+    .header-area .main-header-area {
         padding: 0 20px
     }
 }
 
 @media (min-width: 1200px) and (max-width: 1500px) {
-    .header-area-main .main-header-area-main {
+    .header-area .main-header-area {
         padding: 0 10px
     }
 }
 
-.header-area-main .main-header-area-main .logo-img {
+.header-area .main-header-area .logo-img {
     text-align: center;
     /* margin-left: -0.5rem; */
 }   
 
 @media (max-width: 767px) {
-    .header-area-main .main-header-area-main .logo-img {
+    .header-area .main-header-area .logo-img {
         text-align: left
     }
 }
 
 @media (min-width: 768px) and (max-width: 991px) {
-    .header-area-main .main-header-area-main .logo-img {
+    .header-area .main-header-area .logo-img {
         text-align: left
     }
 }
 
 @media (min-width: 992px) and (max-width: 1200px) {
-    .header-area-main .main-header-area-main .logo-img {
+    .header-area .main-header-area .logo-img {
         text-align: left
     }
 }
 
 @media (max-width: 767px) {
-    .header-area-main .main-header-area-main .logo-img img {
+    .header-area .main-header-area .logo-img img {
         width: 70px
     }
 }
 
 @media (min-width: 768px) and (max-width: 991px) {
-    .header-area-main .main-header-area-main .logo-img img {
+    .header-area .main-header-area .logo-img img {
         width: 70px
     }
 }
 
-.header-area-main .main-header-area-main .book_room {
+.header-area .main-header-area .book_room {
     display: -webkit-box;
     display: -moz-box;
     display: -ms-flexbox;
@@ -666,29 +666,26 @@ h3 {
     margin-right: 2rem;
 }
 
-.hotel-card-view{
-    padding-bottom: 3rem;
-}
 
-.header-area-main .main-header-area-main .book_room .socail_links ul li {
+.header-area .main-header-area .book_room .socail_links ul li {
     display: inline-block
 }
 
-.header-area-main .main-header-area-main .book_room .socail_links ul li a {
+.header-area .main-header-area .book_room .socail_links ul li a {
     color: #A8A7A0;
     margin: 0 10px;
     font-size: 15px
 }
 
-.header-area-main .main-header-area-main .book_room .socail_links ul li a:hover {
+.header-area .main-header-area .book_room .socail_links ul li a:hover {
     color: #fff
 }
 
-.header-area-main .main-header-area-main .book_room .book_btn {
+.header-area .main-header-area .book_room .book_btn {
     margin-left: 30px
 }
 
-.header-area-main .main-header-area-main .book_room .book_btn a {
+.header-area .main-header-area .book_room .book_btn a {
     background: #009DFF;
     padding: 12px 26px;
     font-size: 14px;
@@ -697,39 +694,37 @@ h3 {
     color: #fff
 }
 
-.header-area-main .main-header-area-main .book_room .book_btn a:hover {
+.header-area .main-header-area .book_room .book_btn a:hover {
     background: #fff;
     color: #009DFF;
     border: 1px solid #009DFF
 }
 
-.header-area-main .main-header-area-main .main-menu {
+.header-area .main-header-area .main-menu {
     margin-left: -6rem;
     text-align: center;
     padding: 12px 0
 }
 
-.header-area-main .main-header-area-main .main-menu ul li {
+.header-area .main-header-area .main-menu ul li {
     display: inline-block;
     position: relative;
-    margin-right: 50px;
-    text-decoration: none;
+    margin-right: 50px
 }
 
 @media (min-width: 992px) and (max-width: 1200px) {
-    .header-area-main .main-header-area-main .main-menu ul li {
+    .header-area .main-header-area .main-menu ul li {
         margin-right: 20px
     }
 }
 
 @media (min-width: 1200px) and (max-width: 1500px) {
-    .header-area-main .main-header-area-main .main-menu ul li {
+    .header-area .main-header-area .main-menu ul li {
         margin-right: 15px
     }
 }
 
-.header-area-main .main-header-area-main .main-menu ul li a {
-    text-decoration: none;
+.header-area .main-header-area .main-menu ul li a {
     color: #fff;
     font-size: 16px;
     text-transform: capitalize;
@@ -757,34 +752,34 @@ h3 {
 
 
 @media (min-width: 992px) and (max-width: 1200px) {
-    .header-area-main .main-header-area-main .main-menu ul li a {
+    .header-area .main-header-area .main-menu ul li a {
         font-size: 15px
     }
 }
 
 @media (min-width: 1200px) and (max-width: 1500px) {
-    .header-area-main .main-header-area-main .main-menu ul li a {
+    .header-area .main-header-area .main-menu ul li a {
         font-size: 15px
     }
 }
 
-.header-area-main .main-header-area-main .main-menu ul li a i {
+.header-area .main-header-area .main-menu ul li a i {
     font-size: 9px
 }
 
 @media (max-width: 767px) {
-    .header-area-main .main-header-area-main .main-menu ul li a i {
+    .header-area .main-header-area .main-menu ul li a i {
         display: none !important
     }
 }
 
 @media (min-width: 768px) and (max-width: 991px) {
-    .header-area-main .main-header-area-main .main-menu ul li a i {
+    .header-area .main-header-area .main-menu ul li a i {
         display: none !important
     }
 }
 
-.header-area-main .main-header-area-main .main-menu ul li a::before {
+.header-area .main-header-area .main-menu ul li a::before {
     position: absolute;
     content: "";
     background: #fff;
@@ -800,21 +795,21 @@ h3 {
     transition: .3s
 }
 
-.header-area-main .main-header-area-main .main-menu ul li a:hover::before {
+.header-area .main-header-area .main-menu ul li a:hover::before {
     opacity: 1;
     transform: scaleX(1)
 }
 
-.header-area-main .main-header-area-main .main-menu ul li a.active::before {
+.header-area .main-header-area .main-menu ul li a.active::before {
     opacity: 1;
     transform: scaleX(1)
 }
 
-.header-area-main .main-header-area-main .main-menu ul li a:hover {
+.header-area .main-header-area .main-menu ul li a:hover {
     color: #fff
 }
 
-.header-area-main .main-header-area-main .main-menu ul li .submenu {
+.header-area .main-header-area .main-menu ul li .submenu {
     position: absolute;
     left: 0;
     top: 140%;
@@ -831,11 +826,11 @@ h3 {
     transition: .6s
 }
 
-.header-area-main .main-header-area-main .main-menu ul li .submenu li {
+.header-area .main-header-area .main-menu ul li .submenu li {
     display: block
 }
 
-.header-area-main .main-header-area-main .main-menu ul li .submenu li a {
+.header-area .main-header-area .main-menu ul li .submenu li a {
     padding: 10px 15px;
     position: inherit;
     -webkit-transition: .3s;
@@ -846,30 +841,30 @@ h3 {
     color: #000
 }
 
-.header-area-main .main-header-area-main .main-menu ul li .submenu li a::before {
+.header-area .main-header-area .main-menu ul li .submenu li a::before {
     display: none
 }
 
-.header-area-main .main-header-area-main .main-menu ul li .submenu li:hover a {
+.header-area .main-header-area .main-menu ul li .submenu li:hover a {
     color: #000
 }
 
-.header-area-main .main-header-area-main .main-menu ul li:hover>.submenu {
+.header-area .main-header-area .main-menu ul li:hover>.submenu {
     opacity: 1;
     visibility: visible;
     top: 100%
 }
 
-.header-area-main .main-header-area-main .main-menu ul li:hover>a::before {
+.header-area .main-header-area .main-menu ul li:hover>a::before {
     opacity: 1;
     transform: scaleX(1)
 }
 
-.header-area-main .main-header-area-main .main-menu ul li:first-child a {
+.header-area .main-header-area .main-menu ul li:first-child a {
     padding-left: 0
 }
 
-.header-area-main .main-header-area-main.sticky-show {
+.header-area .main-header-area.sticky-show {
     box-shadow: 0px 3px 16px 0px rgba(0, 0, 0, 0.1);
     position: fixed;
     width: 100%;
@@ -886,30 +881,30 @@ h3 {
 }
 
 @media (max-width: 767px) {
-    .header-area-main .main-header-area-main.sticky {
+    .header-area .main-header-area.sticky {
         padding: 10px 10px
     }
 }
 
 @media (min-width: 768px) and (max-width: 991px) {
-    .header-area-main .main-header-area-main.sticky {
+    .header-area .main-header-area.sticky {
         padding: 10px 10px
     }
 }
 
 @media (min-width: 992px) and (max-width: 1200px) {
-    .header-area-main .main-header-area-main.sticky {
+    .header-area .main-header-area.sticky {
         padding: 10px 20px
     }
 }
 
 @media (min-width: 1200px) and (max-width: 1500px) {
-    .header-area-main .main-header-area-main.sticky {
+    .header-area .main-header-area.sticky {
         padding: 10px 20px
     }
 }
 
-.header-area-main .main-header-area-main.sticky .main-menu {
+.header-area .main-header-area.sticky .main-menu {
     padding: 0
 }
 
@@ -1180,8 +1175,9 @@ h3 {
 
 .offers_area {
     padding-top: 2rem;
-    padding-bottom: 100px;
-    /* background-color: #a2bba821; */
+    padding-bottom: 100px
+
+    
 }
 
 .hotel-list-heading{
@@ -1216,16 +1212,6 @@ h3 {
     }
 }
 
-.single_offers{
-    border: 0.3px solid #5d8fa3;
-    border-radius: 18px;
-    overflow: hidden;
-    /* padding: 1rem 1rem 1rem 1rem; */
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-}
-
 @media (max-width: 767px) {
     .offers_area .single_offers {
         margin-bottom: 30px
@@ -1249,7 +1235,6 @@ h3 {
 }
 
 .offers_area .single_offers h3 {
-    height: 2rem;
     font-size: 22px;
     font-weight: 400;
     color: #1F1F1F;
@@ -1602,14 +1587,9 @@ h3 {
     background: #fff
 }
 
-.link-decoration:hover{
-    text-decoration: none;
-}
-
 .instragram_area {
     display: block;
-    overflow: hidden;
-    padding-top: 0.5rem;
+    overflow: hidden
 }
 
 .instragram_area .single_instagram {
@@ -2464,7 +2444,7 @@ h6 {
 .genric-btn.link {
     color: #415094;
     background: #f9f9ff;
-    /* text-decoration: underline; */
+    text-decoration: underline;
     border: 1px solid transparent
 }
 
@@ -2478,7 +2458,7 @@ h6 {
     color: #415094;
     border: 1px solid #f9f9ff;
     background: #fff;
-    /* text-decoration: underline */
+    text-decoration: underline
 }
 
 .genric-btn.link-border:hover {
@@ -3806,7 +3786,7 @@ h6 {
 }
 
 .blog-info-link li:last-child::after {
-    display: none;
+    display: none
 }
 
 .blog-info-link::after {

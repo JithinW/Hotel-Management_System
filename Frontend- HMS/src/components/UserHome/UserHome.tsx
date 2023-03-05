@@ -1,48 +1,14 @@
 
-import axios from "axios";
-import React, { useContext, useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
+import React, { useContext, useEffect } from "react";
 import UserContext from "../../context/UserContext";
 
 function UserHome() {
   const { user } = useContext(UserContext);
-  const [hotels, setHotels] = useState<any>([]);
-  const history = useHistory();
-
-  console.log(hotels)
 
   useEffect(() => {
-    async function fetchData() {
-      try {
-        const response = await axios.get("http://localhost:8090/hotels/getHotels");
-        setHotels(response.data);
-
-      } catch (error) {
-        console.error(error);
-      }
-    }
-    fetchData();
-  }, []);
-
-  const handleHotelClick = () => {
-    if (!user) {
-      history.push("/login");
-    } else {
-      console.log("User is logged in");
-    }
-  };
-
-  const handleViewRooms = (id : number, name : string) : any=> {
-    if (!user) {
-      history.push("/login");
-    } else {
-      history.push({
-        pathname: "/roomTypes",
-        state: { hotelId: id, hotelName : name}
-      });
-    }
-  };
-
+    console.log()
+  }, [])
+  
   return (
     <>
       <div className="s002">
@@ -80,25 +46,52 @@ function UserHome() {
               </div>
             </div>
           </div>
-          <div className="row hotel-row">
-              {
-                hotels?.map((hotel: any) => (
-                  <div className="col-xl-4 col-md-4 hotel-card-view" key={hotel.id} onClick={handleHotelClick}>
-                    <div className="single_offers">
-                      <div className="about_thumb">
-                        <img src={`http://localhost:8090/hotels/getImage/${hotel.image}`} width="100" height="350" alt="" />
-                      </div>
-                      <h3>{hotel.name} - {hotel.location}</h3>
-                      <ul>
-                        <li>Luxaries condition</li>
-                        <li>3 Adults & 2 Children size</li>
-                        <li>Sea view side</li>
-                      </ul>
-                      <a className="book_now" onClick={()=>handleViewRooms(hotel.id,hotel.name)}>View Rooms</a>
-                    </div>
-                  </div>
-                ))
-              }
+          <div className="row">
+            <div className="col-xl-4 col-md-4">
+              <div className="single_offers">
+                <div className="about_thumb">
+                  <img src="img/offers/1.png" alt="" />
+                </div>
+                <h3>Up to 35% savings on Club <br />
+                  rooms and Suites</h3>
+                <ul>
+                  <li>Luxaries condition</li>
+                  <li>3 Adults & 2 Children size</li>
+                  <li>Sea view side</li>
+                </ul>
+                <a href="#" className="book_now">book now</a>
+              </div>
+            </div>
+            <div className="col-xl-4 col-md-4">
+              <div className="single_offers">
+                <div className="about_thumb">
+                  <img src="img/offers/2.png" alt="" />
+                </div>
+                <h3>Up to 35% savings on Club <br />
+                  rooms and Suites</h3>
+                <ul>
+                  <li>Luxaries condition</li>
+                  <li>3 Adults & 2 Children size</li>
+                  <li>Sea view side</li>
+                </ul>
+                <a href="#" className="book_now">book now</a>
+              </div>
+            </div>
+            <div className="col-xl-4 col-md-4">
+              <div className="single_offers">
+                <div className="about_thumb">
+                  <img src="img/offers/3.png" alt="" />
+                </div>
+                <h3>Up to 35% savings on Club <br />
+                  rooms and Suites</h3>
+                <ul>
+                  <li>Luxaries condition</li>
+                  <li>3 Adults & 2 Children size</li>
+                  <li>Sea view side</li>
+                </ul>
+                <a href="#" className="book_now">book now</a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -118,7 +111,7 @@ function UserHome() {
       {/* <!-- video_area_end --> */}
 
       {/* <!-- features_room_startt --> */}
-      {/* <div className="features_room">
+      <div className="features_room">
         <div className="container">
           <div className="row">
             <div className="col-xl-12">
@@ -179,7 +172,7 @@ function UserHome() {
             </div>
           </div>
         </div>
-      </div> */}
+      </div>
       {/* <!-- features_room_end --> */}
 
       {/* <!-- forQuery_start --> */}

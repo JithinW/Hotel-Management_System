@@ -49,8 +49,8 @@ function Signup() {
                                 <use xlinkHref="#icon-user"></use>
                             </svg><span className="hidden">username</span></label>
                             <input
-                                autoComplete='username'
-                                id="login__username"
+                                autoComplete='email'
+                                id="login__email"
                                 type="text"
                                 name="username"
                                 className="form__input"
@@ -61,11 +61,11 @@ function Signup() {
                         </div>
 
                         <div className="form__field">
-                            <label htmlFor="login_email"><svg className="icon">
+                            <label htmlFor="login_username"><svg className="icon">
                                 <use xlinkHref="#icon-email"></use>
                             </svg><span className="hidden">Email</span></label>
                             <input
-                                autoComplete='email'
+                                autoComplete='username'
                                 id="login__email"
                                 type="text" name="email"
                                 className="form__input"

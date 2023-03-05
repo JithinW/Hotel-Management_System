@@ -2,7 +2,6 @@
     stage: 0;
 }
 
-
 /* config.css */
 
 :root {
@@ -19,6 +18,7 @@
     background: url('/public/images/banner_auto_x2.jpg');
     background-size: cover;
     background-position: center;
+    margin-bottom: 0.5rem;
     height: 33rem;
 }
 
@@ -125,7 +125,7 @@ a:hover {
     --formGap: 0.875rem;
 }
 
-.form__input {
+input {
     background-image: none;
     border: 0;
     color: inherit;
