@@ -1,4 +1,4 @@
-package com.system.hotel.booking.services;
+package com.system.hotel.booking.utils;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -19,10 +19,9 @@ public class ImageUploadDownloadUtil {
 	
     private Path foundFile;
      
-    public Resource getImageAsResource(String imgName) throws IOException, ResourceNotFoundException {
+    public Resource getImageAsResource(String imgName, String imagePath) throws IOException, ResourceNotFoundException {
     	
-        Path dirPath = Paths.get("Images");
-         
+        Path dirPath = Paths.get(imagePath);
         Files.list(dirPath).forEach(file -> {
             if (file.getFileName().toString().equals(imgName)) {
                 foundFile = file;
@@ -30,6 +29,7 @@ public class ImageUploadDownloadUtil {
             }
         });
         if (foundFile != null) {
+        	System.out.println("keri");
             return new UrlResource(foundFile.toUri());
         }
         else {
@@ -38,11 +38,11 @@ public class ImageUploadDownloadUtil {
          
     }
 
-	public void uploadImage(Hotel hotel, MultipartFile multipartFile) throws IOException {
+	public void uploadImage(Long id, MultipartFile multipartFile, String imagePath) throws IOException {
 		
-		Path uploadPath = Paths.get("./Images/");
+		Path uploadPath = Paths.get("./" , imagePath , "/");
 		try (InputStream inputStream = multipartFile.getInputStream()) {
-			Path filePath = uploadPath.resolve(String.valueOf(hotel.getId()) + multipartFile.getOriginalFilename());
+			Path filePath = uploadPath.resolve(String.valueOf(id) + multipartFile.getOriginalFilename());
 			Files.copy(inputStream, filePath, StandardCopyOption.REPLACE_EXISTING);
 
 		} catch (IOException e) {
