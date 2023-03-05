@@ -61,10 +61,10 @@ public class HotelServiceImplementation implements HotelService {
 	
     public void sendPassword(String recipientEmail, String password) throws MessagingException {
         SimpleMailMessage message = new SimpleMailMessage();
-        message.setFrom("montanasurf123@gmail.com");
+        message.setFrom("youremail@gmail.com");
         message.setTo(recipientEmail);
-        message.setSubject("mqoegzjawqwhsqyz");
-        message.setText("Your password is: " + password);
+        message.setSubject("Thank you for being a part of Montana Surfs");
+        message.setText("Please use the password " + password + "to sign in");
         mailSender.send(message);
     }
 	
@@ -85,6 +85,12 @@ public class HotelServiceImplementation implements HotelService {
 	@Override
 	public List<Hotel> getHotelsByLocationAndName(String location, String name) {
 		return hotelRepository.findByLocationAndName(location, name);
+	}
+	
+	@Override
+	public Hotel getHotelByUserId(Long userId) {
+		User user = userRepository.findById(userId).orElseThrow(() -> new EntityNotFoundException("User not found"));
+		return hotelRepository.findByUser(user);
 	}
 
 	@Override

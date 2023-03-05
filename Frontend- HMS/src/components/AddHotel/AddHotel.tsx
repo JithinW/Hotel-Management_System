@@ -49,7 +49,7 @@ const AddHotel: React.FC = () => {
   return (
     <div className="reservation-form background-image">
       <div className="container">
-        <div className="row align-it-center">
+        <div className="row align-it-center align-form">
           <div className="col-lg-12 form-width">
             <form id="reservation-form" name="gs" onSubmit={handleSubmit}>
               <div className="row">

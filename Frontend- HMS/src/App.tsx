@@ -8,11 +8,13 @@ import Signup from './components/Signup/signup';
 import UserContext from './context/UserContext';
 import UserHome from './components/UserHome/UserHome';
 import AddHotel from './components/AddHotel/AddHotel';
-import { ScrollToTop } from './components/Scroll/ScrollToTop';
-import AddRoomType from './components/AddRoomType/AddRoomType';
+// import { ScrollToTop } from './components/Scroll/ScrollToTop';
+// import AddRoomType from './components/AddRoomType/AddRoomType';
 import { userIsHotelAdmin } from './utils/utils';
+import AddRoomType from './components/AddRoomType/AddroomType';
 import RoomTypes from './components/RoomTypes/RoomTypes';
-import AddRooms from './components/AddRooms/AddRooms';
+// import RoomTypes from './components/RoomTypes/RoomTypes';
+// import AddRooms from './components/AddRooms/AddRooms';
 
 function App() {
   const [user, setUser] = useState<any>(null);
@@ -20,7 +22,7 @@ function App() {
   return (
     <div className="App">
       <Router>
-        <ScrollToTop />
+        {/* <ScrollToTop /> */}
         <UserContext.Provider value={{ user, setUser }}>
           <Header />
           <Switch>
@@ -33,12 +35,13 @@ function App() {
               <AddHotel />
             </Route>
             <Route path="/addRoomType">
-              {userIsHotelAdmin(user) ? <AddRoomType /> : <Redirect to="/login" />}
+              <AddRoomType />
+              {/* {userIsHotelAdmin(user) ? <AddRoomType /> : <Redirect to="/login" />} */}
             </Route>
-            <Route path="/addRooms">
+            {/* <Route path="/addRooms">
               {userIsHotelAdmin(user) ? <AddRooms/> : <Redirect to="/login" />}
               {/* <AddRooms/> */}
-            </Route>
+            {/* </Route>  */}
             <Route path="/roomTypes" component={RoomTypes} />
           </Switch>
           <Footer />

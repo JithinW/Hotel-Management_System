@@ -54,17 +54,17 @@ function Header() {
                           </NavLink>
                           </li> : ''
                         }
-                        {user ?
-                          <li><NavLink activeClassName="active" onClick={() => setUser('')} to="/login">
-                            Log out
-                          </NavLink>
-                          </li> : ''
-                        }
                         {userIsHotelAdmin(user) ?
                           <li>
                             <NavLink activeClassName="active" to="/addRooms">
                               Add Room
                             </NavLink>
+                          </li> : ''
+                        }
+                        {user ?
+                          <li><NavLink activeClassName="active" onClick={() => setUser('')} to="/login">
+                            Log out
+                          </NavLink>
                           </li> : ''
                         }
                         <li></li><li></li><li></li> <li></li>
