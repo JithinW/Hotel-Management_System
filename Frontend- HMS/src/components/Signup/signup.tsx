@@ -4,42 +4,35 @@ import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
 import './signup.scss'
 import { useHistory } from 'react-router-dom';
 import UserContext from '../../context/UserContext';
-import validateInputs from '../../utils/ValidateInputs';
 import { signup } from '../../utils/apiUrl';
+import LoadingIndicator from "../LoadingIndicator/LoadIndicator";
 
 function Signup() {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const role = "USER"
-    // const [userNameErrorMessage, setUserNameErrorMessage] = useState('');
-    // const [passwordErrorMessage, setPassWordErrorMessage] = useState('');
     const history = useHistory();
     const { setUser } = useContext(UserContext);
+    const [isLoading, setIsLoading] = useState(false);
 
     function handleSubmit() {
-        // let isValid = validateInputs("email", email);
-        // if (!isValid) {
-        //     setUserNameErrorMessage('Not a valid email.');
-        //     return;
-        // }
-        // isValid = validateInputs("password", password);
-        // if (!isValid) {
-        //     setPassWordErrorMessage('Password must contain at least 8 characters, including at least one letter and one number.');
-        //     return;
-        // }
+        setIsLoading(true)
         axios.post(signup, { name, email, password, role })
             .then((response) => {
                 setUser(response.data);
+                setIsLoading(false);
                 history.push('/home');
             })
             .catch(error => {
-                console.log(error);
+                setIsLoading(false)
+                alert("Error occured while creating account, please try again")
             });
     }
 
     return (
         <div className='signup'>
+            {isLoading && <LoadingIndicator />}
             <div className="align">
                 <div className="grid">
                     <div className="form login">

@@ -1267,7 +1267,13 @@ Deals Page Style
 
 
 .amazing-deals {
-  margin-top: 120px;
+  margin-top: 8.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.booking-container{
+  padding-top: 10rem;
+  background-color: #dddddd6e;
 }
 
 .amazing-deals .item .image {
@@ -1281,6 +1287,7 @@ Deals Page Style
   border-radius: 23px;
   padding-right: 30px;
   margin-bottom: 30px;
+  border: 0.5px solid;
 }
 
 .amazing-deals .item span.info {
@@ -1495,8 +1502,15 @@ Reservation Page Style
 
 .reservation-form #reservation-form {
   padding: 60px 120px;
-  background-color: #f9f9f9;
+  background-color: #dddddd54;
   border-radius: 23px;
+  border : 0.2px solid #999999
+}
+
+.sub-container{
+  border: 0.3px solid #999999;
+    border-radius: 23px;
+    background-color: #91919108;
 }
 
 .reservation-form #reservation-form label {
@@ -1516,6 +1530,7 @@ Reservation Page Style
   padding: 0px 20px;
   cursor: pointer;
   margin-bottom: 30px;
+  text-align: center;
 }
 
 .card-align{
@@ -1528,6 +1543,7 @@ Reservation Page Style
   display: flex;
   justify-content: center;
   width: 110%;
+  padding-bottom: 1rem;
 }
 
 .main-button a {
@@ -1540,14 +1556,19 @@ Reservation Page Style
   border-radius: 25px;
   font-weight: 500;
   text-transform: capitalize;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.5px;  
   transition: all .3s;
   position: relative;
   overflow: hidden;
 }
 
+.main-button a:hover {
+  background-color: #42c05e;
+  border: 1px solid #42c05e;
+}
+
 .reservation-form #reservation-form input::placeholder{
-  color: #08000844;
+  color: #08000852;
 }
 
 .reservation-form #reservation-form #file{
@@ -1555,7 +1576,7 @@ Reservation Page Style
 }
 
 .reservation-form #reservation-form input.date {
-  color: #aaa;
+  color: #000;
 }
 
 .reservation-form #reservation-form button {

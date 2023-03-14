@@ -97,6 +97,21 @@ p {
     font-family: 'Raleway', sans-serif
 }
 
+.dropdown-menu:hover {
+    /* display: none;
+    width: 2rem; */
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+    font-family: "Raleway", sans-serif;
+    text-transform: capitalize;
+    font-weight: 600;
+    padding-left: 5rem;
+    /* background-color: black; */
+    /* color: white; */
+}
+
 label {
     color: #7e7e7e;
     cursor: pointer;
@@ -399,7 +414,12 @@ h3 {
     color: #009DFF;
     border: 1px solid #009DFF;
     text-transform: capitalize;
-    padding: 10px 25px
+    padding: 10px 25px;
+    border-radius: 23px;
+}
+
+.bookNow-section {
+    /* margin-bottom: -2rem; */
 }
 
 .book_now:hover {
@@ -616,7 +636,7 @@ h3 {
 .header-area-main .main-header-area-main .logo-img {
     text-align: center;
     /* margin-left: -0.5rem; */
-}   
+}
 
 @media (max-width: 767px) {
     .header-area-main .main-header-area-main .logo-img {
@@ -666,8 +686,17 @@ h3 {
     margin-right: 2rem;
 }
 
-.hotel-card-view{
+.hotel-card-view {
     padding-bottom: 3rem;
+    min-width: 50%;
+}
+
+.description-section {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem 1rem 1rem 1rem;
+    flex: 1 1 50%;
+    align-self: flex-start;
 }
 
 .header-area-main .main-header-area-main .book_room .socail_links ul li {
@@ -699,7 +728,7 @@ h3 {
 
 .header-area-main .main-header-area-main .book_room .book_btn a:hover {
     background: #fff;
-    color: #009DFF;
+    /* color: #009DFF; */
     border: 1px solid #009DFF
 }
 
@@ -738,11 +767,11 @@ h3 {
     padding: 0px 0px 10px 0px;
     font-family: "Raleway", sans-serif;
     position: relative;
-    text-transform: capitalize
+    text-transform: uppercase;
 }
 
 
-.user-name{
+.user-name {
     color: #fff;
     font-size: 16px;
     text-transform: capitalize;
@@ -768,6 +797,15 @@ h3 {
     }
 }
 
+.dropdown-menu {
+    transition: height 0.3s ease-out;
+    max-height: 0;
+    overflow: hidden;
+  }
+  
+  .dropdown:hover .dropdown-menu {
+    max-height: 500px; /* or any large enough value */
+  }
 .header-area-main .main-header-area-main .main-menu ul li a i {
     font-size: 9px
 }
@@ -819,7 +857,7 @@ h3 {
     left: 0;
     top: 140%;
     background: #fff;
-    width: 200px;
+    width: 140px;
     z-index: 2;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.02);
     opacity: 0;
@@ -828,20 +866,36 @@ h3 {
     -webkit-transition: .6s;
     -moz-transition: .6s;
     -o-transition: .6s;
-    transition: .6s
+    transition: .6s;
+    text-transform: uppercase;
+}
+
+.menu-navlink {
+    color: #000;
+    text-transform: uppercase;
+    padding-right: 2rem;
+    width: 140px;
+    z-index: 2;
+    font-size: 1rem;
+}
+
+.menu-navlink:hover {
+    color: rgba(47, 0, 255, 0.534);
+    text-decoration: none;
 }
 
 .header-area-main .main-header-area-main .main-menu ul li .submenu li {
-    display: block
+    display: block;
+    text-transform: uppercase;
 }
 
 .header-area-main .main-header-area-main .main-menu ul li .submenu li a {
     padding: 10px 15px;
     position: inherit;
-    -webkit-transition: .3s;
-    -moz-transition: .3s;
-    -o-transition: .3s;
-    transition: .3s;
+    -webkit-transition: .4s;
+    -moz-transition: .4s;
+    -o-transition: .4s;
+    transition: .4s;
     display: block;
     color: #000
 }
@@ -851,7 +905,7 @@ h3 {
 }
 
 .header-area-main .main-header-area-main .main-menu ul li .submenu li:hover a {
-    color: #000
+    color: rgba(47, 0, 255, 0.534);
 }
 
 .header-area-main .main-header-area-main .main-menu ul li:hover>.submenu {
@@ -1184,7 +1238,7 @@ h3 {
     /* background-color: #a2bba821; */
 }
 
-.hotel-list-heading{
+.hotel-list-heading {
     height: 8rem;
 }
 
@@ -1216,14 +1270,15 @@ h3 {
     }
 }
 
-.single_offers{
+.single_offers {
     border: 0.3px solid #5d8fa3;
     border-radius: 18px;
     overflow: hidden;
     /* padding: 1rem 1rem 1rem 1rem; */
     display: flex;
     align-items: center;
-    flex-direction: column;
+    width: 33rem;
+    /* flex-direction: column; */
 }
 
 @media (max-width: 767px) {
@@ -1233,7 +1288,8 @@ h3 {
 }
 
 .offers_area .single_offers .about_thumb {
-    overflow: hidden
+    overflow: hidden;
+    flex: 1 1 50%;
 }
 
 .offers_area .single_offers .about_thumb img {
@@ -1248,12 +1304,27 @@ h3 {
     transition: .3s
 }
 
+.hotel-details {
+    /* padding-top: 1rem; */
+    height: 13rem;
+}
+
 .offers_area .single_offers h3 {
-    height: 2rem;
-    font-size: 22px;
+    height: 4rem;
+    font-size: 26px;
     font-weight: 400;
     color: #1F1F1F;
-    margin-top: 32px
+    /* margin-top: 5px; */
+    font-family: system-ui;
+    text-transform: uppercase;
+}
+
+.no-hotel-text{
+    padding-top: 2rem;
+    width: 100%;
+    text-align: center;
+    font-size: 1.5rem;
+    letter-spacing: 1px;
 }
 
 @media (min-width: 768px) and (max-width: 991px) {
@@ -1274,12 +1345,14 @@ h3 {
 }
 
 .offers_area .single_offers ul li {
-    font-size: 16px;
+    font-size: 17px;
     color: #4D4D4D;
     line-height: 28px;
     position: relative;
     z-index: 9;
-    padding-left: 23px
+    padding-left: 23px;
+    font-family: system-ui;
+    padding-bottom: 0.5rem;
 }
 
 .offers_area .single_offers ul li::before {
@@ -1602,7 +1675,7 @@ h3 {
     background: #fff
 }
 
-.link-decoration:hover{
+.link-decoration:hover {
     text-decoration: none;
 }
 

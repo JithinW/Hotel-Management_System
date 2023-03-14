@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,6 +19,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
+
+import com.system.hotel.booking.common.RoomAndBookingCountsVO;
 import com.system.hotel.booking.entity.Hotel;
 import com.system.hotel.booking.entity.User;
 import com.system.hotel.booking.exception.ResourceNotFoundException;
@@ -34,25 +37,25 @@ public class HotelController {
 	public HotelController(HotelService hotelService) {
 		this.hotelService = hotelService;
 	}
-	
+
 	@PostMapping("/createHotel")
 	public ResponseEntity<String> createHotel(@ModelAttribute Hotel hotel,
-	        @RequestParam(value = "img", required = false) MultipartFile img) throws IOException {
-	    try {
-	        Hotel savedHotel = hotelService.createHotel(hotel);
-	        hotel.setImage(hotel.getId() + img.getOriginalFilename());
-	        ImageUploadDownloadUtil imageUploadUtil = new ImageUploadDownloadUtil();
-	        String imagePath = "Hotel-Images";
-	        imageUploadUtil.uploadImage(savedHotel.getId(), img, imagePath);
-	        User savedUser = hotelService.createHotelUser(savedHotel);
-	        hotel.setUser(savedUser);
-	        hotelService.createHotel(hotel);
-	        return ResponseEntity.ok("Hotel Created Successfully");
-	    }catch (Exception e) {
-	        return ResponseEntity.badRequest().body("Failed to create hotel. " + e.getMessage());
-	    }
+			@RequestParam(value = "img", required = false) MultipartFile img) throws IOException {
+		try {
+			Hotel savedHotel = hotelService.createHotel(hotel);
+			hotel.setImage(hotel.getId() + img.getOriginalFilename());
+			ImageUploadDownloadUtil imageUploadUtil = new ImageUploadDownloadUtil();
+			String imagePath = "Hotel-Images";
+			imageUploadUtil.uploadImage(savedHotel.getId(), img, imagePath);
+			User savedUser = hotelService.createHotelUser(savedHotel);
+			hotel.setUser(savedUser);
+			hotelService.createHotel(hotel);
+			return ResponseEntity.ok("Hotel Created Successfully");
+		} catch (Exception e) {
+			return ResponseEntity.badRequest().body("Failed to create hotel. " + e.getMessage());
+		}
 	}
-	
+
 	@GetMapping("/getImage/{img}")
 	public ResponseEntity<?> downloadImage(@PathVariable("img") String imgName)
 			throws ResourceNotFoundException, IOException, URISyntaxException {
@@ -64,7 +67,6 @@ public class HotelController {
 		return ResponseEntity.ok().contentType(MediaType.parseMediaType(contentType))
 				.header(HttpHeaders.CONTENT_DISPOSITION, headerValue).body(resource);
 	}
-
 
 	@GetMapping("/getAllHotels")
 	public ResponseEntity<List<Hotel>> getAllHotels() {
@@ -99,4 +101,45 @@ public class HotelController {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
 		}
 	}
+
+	@GetMapping("getId/{userId}")
+	public ResponseEntity<Long> getHotelId(@PathVariable("userId") Long userId) {
+		Hotel hotel = hotelService.getHotelByUserId(userId);
+		return ResponseEntity.ok(hotel.getId());
+	}
+
+	@GetMapping("page/{pageNumber}")
+	public ResponseEntity<List<Hotel>> getHotelsByPage(@PathVariable("pageNumber") int pageNumber) {
+		try {
+			List<Hotel> hotel = hotelService.getHotelsByPage(pageNumber);
+			return ResponseEntity.ok(hotel);
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+		}
+	}
+
+	@DeleteMapping("/{hotelId}")
+	public ResponseEntity<?> deleteHotel(@PathVariable("hotelId") Long hotelId) {
+		try {
+			hotelService.deleteHotelById(hotelId);
+			return ResponseEntity.ok("Deleted successfuly");
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+		}
+	}
+
+	@GetMapping("/getRoomCounts/{hotelId}")
+	public ResponseEntity<RoomAndBookingCountsVO> getRoomsAndBookingCounts(@PathVariable("hotelId") Long hotelId) {
+		try {
+			RoomAndBookingCountsVO roomAndBookingCountsVO = hotelService.getRoomsAndBookingCounts(hotelId);
+			if (roomAndBookingCountsVO == null) {
+				return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+			} else {
+				return ResponseEntity.ok(roomAndBookingCountsVO);
+			}
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+		}
+	}
+
 }

@@ -1,10 +1,11 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { BrowserRouter as Router, Route, Link, useHistory } from 'react-router-dom';
 import './login.css'
 import UserContext from '../../context/UserContext';
-import axios from 'axios';
-import validateInputs from '../../utils/ValidateInputs';
+import axios, { AxiosResponse } from 'axios';
 import { login } from '../../utils/apiUrl';
+import { userIsAdmin, userIsGuest, userIsHotelAdmin } from '../../utils/utils';
+import LoadingIndicator from "../LoadingIndicator/LoadIndicator";
 
 function Login() {
     const [email, setEmail] = useState('');
@@ -12,33 +13,49 @@ function Login() {
     const [userNameErrorMessage, setUserNameErrorMessage] = useState('');
     const [passwordErrorMessage, setPassWordErrorMessage] = useState('');
     const history = useHistory();
-    const { user,setUser } = useContext(UserContext);
+    const { user, setUser } = useContext(UserContext);
+    const [isLoading, setIsLoading] = useState(false);
+
+    useEffect(() => {
+        setUser('')
+        localStorage.clear()
+    }, [])
+
 
     function handleSubmit() {
-        let isValid = validateInputs("email", email);
-        if (!isValid) {
-            setUserNameErrorMessage('Not a valid email.');
-            return;
-        }
-        isValid = validateInputs("password", password);
-        if (!isValid) {
-            setPassWordErrorMessage('Password must contain at least 8 characters, including at least one letter and one number.');
-            return;
-        }
+        setIsLoading(true)
         axios.post(login, { email, password })
             .then((response) => {
-                setUser(response.data);
-                history.push('/home');
+                postLoginActivities(response);
+                setIsLoading(false);
+
             })
             .catch(error => {
-                console.log(error);
+                alert("Please check email and password")
+                setIsLoading(false)
             });
     }
 
-    console.log("logged in using", user)
+    function postLoginActivities(response: AxiosResponse<any, any>) {
+        localStorage.setItem('user', JSON.stringify(response.data));
+        if (response.data.user) {
+            setUser(response.data.user);
+        }
+        else {
+            setUser(response.data)
+        }
+        if (response.data.hotelId) {
+            localStorage.setItem('hotelId', JSON.stringify(response.data.hotelId));
+            history.push('/dashboard');
+        }
+        if (userIsGuest() || userIsAdmin()) {
+            history.push('/home');
+        }
+    }
 
     return (
         <div className='login'>
+            {isLoading && <LoadingIndicator />}
             <div className="align">
                 <div className="grid">
                     <div className="form login">
@@ -100,3 +117,6 @@ function Login() {
 }
 
 export default Login;
+
+
+

@@ -1,5 +1,7 @@
 package com.system.hotel.booking.services;
 
+import java.util.List;
+
 import com.system.hotel.booking.entity.User;
 
 public interface UserService {
@@ -13,5 +15,7 @@ public interface UserService {
     User updateUser(Long id, User user);
 
     void deleteUser(Long id);
+    
+    List<User> getAllUsers(int pageNumber);
 }
 

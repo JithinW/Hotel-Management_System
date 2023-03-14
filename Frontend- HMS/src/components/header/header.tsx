@@ -1,12 +1,16 @@
 import * as React from "react";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import UserContext from "../../context/UserContext";
-import { userIsGuest, userIsHotelAdmin } from "../../utils/utils";
+import { userIsAdmin, userIsGuest, userIsHotelAdmin } from "../../utils/utils";
 
 function Header() {
   const { user, setUser } = useContext(UserContext)
-  console.log("user", user)
+  const clearUserSession = () => {
+    localStorage.clear();
+    setUser('');
+  }
+  const [isOpen, setIsOpen] = useState(false)
   return (
     <>
       <header>
@@ -18,56 +22,85 @@ function Header() {
                   <div className="main-menu  d-none d-lg-block">
                     <nav>
                       <ul id="navigation">
-                        {user ?
-                          <li>
+                        {!userIsHotelAdmin() ?
+                          (<li>
                             <NavLink activeClassName="active" to="/home">
                               Home
                             </NavLink>
-                          </li> : ''
+                          </li>) :
+                          (userIsHotelAdmin() &&
+                            <li>
+                              <NavLink activeClassName="active" to="/dashboard">
+                                Dashboard
+                              </NavLink>
+                            </li>)
                         }
                         {user ? '' :
-                          <li>
-                            <NavLink activeClassName="active" to="/login">
-                              Login
-                            </NavLink>
-                          </li>}
-                        {user ? '' :
-                          <li>
-                            <NavLink activeClassName="active" to="/signup">
-                              Sign up
-                            </NavLink>
-                          </li>
+                          <>
+                            <li>
+                              <NavLink activeClassName="active" to="/login">
+                                Log in
+                              </NavLink>
+                            </li>
+                            <li>
+                              <NavLink activeClassName="active" to="/signup">
+                                Sign up
+                              </NavLink>
+                            </li>
+                          </>
                         }
-                        {userIsGuest(user) ?
-                          <li><NavLink activeClassName="active" to="Gallery.html">
+                        {userIsGuest() ?
+                          <li><NavLink activeClassName="active" to="/myBookings">
                             My Bookings
                           </NavLink>
                           </li> : ''
                         }
-                        {/* <li><NavLink activeClassName="active" to="Contact.html">
-                          Contact us
-                        </NavLink>
-                        </li> */}
-                        {userIsHotelAdmin(user) ?
-                          <li><NavLink activeClassName="active" to="/addRoomType">
-                            Add Room Type
-                          </NavLink>
-                          </li> : ''
+                        {userIsHotelAdmin() ?
+                          <>
+                            <li>
+                              <a href="#">Room Types <i className="ti-angle-down"></i></a>
+                              <ul className="submenu">
+                                <li><NavLink activeClassName="active" to="/addRoomType">Add Room Types</NavLink></li>
+                                <li><NavLink activeClassName="active" to="/viewRoomTypes">View Room Types</NavLink></li>
+                              </ul>
+                            </li>
+                            <li>
+                              <a href="#">Rooms <i className="ti-angle-down"></i></a>
+                              <ul className="submenu">
+                                <li><NavLink activeClassName="active" to="/addRoom">Add Room</NavLink></li>
+                                <li><NavLink activeClassName="active" to="/viewRooms">View Room</NavLink></li>
+                              </ul>
+                            </li>
+                            <li>
+                              <NavLink activeClassName="active" to="/viewBookings">
+                                Bookings
+                              </NavLink>
+                            </li>
+                          </> : ''
                         }
-                        {userIsHotelAdmin(user) ?
+                        {
+                          userIsAdmin() &&
+                          <>
                           <li>
-                            <NavLink activeClassName="active" to="/addRooms">
-                              Add Room
-                            </NavLink>
-                          </li> : ''
+                              <a href="#">Hotels <i className="ti-angle-down"></i></a>
+                              <ul className="submenu">
+                                <li><NavLink activeClassName="active" to="/addHotel">Add Hotel</NavLink></li>
+                                <li><NavLink activeClassName="active" to="/viewHotels">View Hotel</NavLink></li>
+                              </ul>
+                            </li>
+                            <li>
+                              <NavLink activeClassName="active" to="/users">
+                                Users
+                              </NavLink>
+                            </li>
+                            <li>
+                              <NavLink activeClassName="active" to="/allBookings">
+                                BOOKINGS
+                              </NavLink>
+                            </li>
+                          </>
                         }
-                        {user ?
-                          <li><NavLink activeClassName="active" onClick={() => setUser('')} to="/login">
-                            Log out
-                          </NavLink>
-                          </li> : ''
-                        }
-                        <li></li><li></li><li></li> <li></li>
+                        <li></li><li></li>
                       </ul>
                     </nav>
                   </div>
@@ -107,13 +140,24 @@ function Header() {
                 </div> :
                   <div className="col-xl-5 col-lg-4 d-none d-lg-block user-name-right">
                     <div className="book_room">
-                      <div className="user-name" style={{ textTransform: 'uppercase', letterSpacing: '1px' }}>
+                      <div className="user-name dropdown" style={{ textTransform: 'uppercase', letterSpacing: '1px' }}>
                         {user?.name}
                         <svg className="icon" style={{ height: '20px' }}>
                           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 24 24">
                             <path d="M12,12c2.76,0,5-2.24,5-5s-2.24-5-5-5s-5,2.24-5,5S9.24,12,12,12z M12,13.5c-2.33,0-7,1.17-7,3.5v1.5h14v-1.5 C19,14.67,14.33,13.5,12,13.5z" style={{ fill: '#fff' }} />
                           </svg>
                         </svg>
+                        <i className="ti-angle-down" style={{ paddingLeft: '3px' }} onClick={() => setIsOpen(!isOpen)}>
+                          {user ?
+                            isOpen ?
+                              (<div className="dropdown-menu" style={{ minWidth: '2rem', paddingLeft: '1.5rem', whiteSpace: 'nowrap', transition: 'opacity 1s ease-in-out', opacity: '1' }}>
+
+                                <li><NavLink className="menu-navlink" onClick={() => clearUserSession()} to="/login">
+                                  Log out
+                                </NavLink>
+                                </li>
+                              </div>) : '' : ''}
+                        </i>
                       </div>
                     </div>
 

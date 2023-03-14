@@ -1,9 +1,15 @@
 package com.system.hotel.booking.serviceImplementation;
 
+import java.util.List;
+
 import javax.persistence.EntityNotFoundException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+
+import com.system.hotel.booking.entity.HotelRoomType;
 import com.system.hotel.booking.entity.User;
 import com.system.hotel.booking.repository.UserRepository;
 import com.system.hotel.booking.services.UserService;
@@ -32,7 +38,6 @@ public class UserServiceImplementation implements UserService {
         if (!user.getPassword().equals(password)) {
             return null;
         }
-        // Authentication successful, return user
         return user;
     }
 
@@ -56,4 +61,12 @@ public class UserServiceImplementation implements UserService {
     public void deleteUser(Long id) {
         userRepository.deleteById(id);
     }
+
+	@Override
+	public List<User> getAllUsers(int pageNumber) {
+		int pageSize = 10;
+		Pageable pageable = PageRequest.of(pageNumber - 1, pageSize);
+		return userRepository.findAllUsersByPage(pageable);
+	}
+	
 }

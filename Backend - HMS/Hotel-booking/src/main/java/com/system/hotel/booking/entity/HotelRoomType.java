@@ -49,7 +49,7 @@ public class HotelRoomType {
     
     private int totalRooms;
     
-    private int bookedRooms;
+    private int bookedCount;
 
 	public HotelRoomType() {
 		super();
@@ -135,14 +135,13 @@ public class HotelRoomType {
 		this.totalRooms = totalRooms;
 	}
 
-	public int getBookedRooms() {
-		return bookedRooms;
+	public int getBookedCount() {
+		return bookedCount;
 	}
 
-	public void setBookedRooms(int bookedRooms) {
-		this.bookedRooms = bookedRooms;
+	public void setBookedCount(int bookedCount) {
+		this.bookedCount = bookedCount;
 	}
-	
 	
 
 }

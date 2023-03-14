@@ -1,0 +1,26 @@
+.view-booking-container{
+    padding-top: 5rem;
+}
+
+.title{
+    font-size: 2rem;
+}
+
+.page{
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 1rem;
+}
+
+.no-data-text-view{
+    padding-top: 6.5rem;
+}
+
+.no-bookings-text{
+    font-size: 1.6rem;
+}
+
+.delete-link-text{
+    color: rgb(68, 0, 255);
+    cursor: pointer;
+}

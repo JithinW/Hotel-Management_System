@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import './AddHotel.css'
+import LoadingIndicator from "../LoadingIndicator/LoadIndicator";
 
 const AddHotel: React.FC = () => {
   const [hotel, setHotel] = useState<any>({
@@ -12,7 +13,8 @@ const AddHotel: React.FC = () => {
     address: "",
   });
   const [imageFile, setImageFile] = useState<File | null>(null);
-
+  const [isLoading, setIsLoading] = useState(false);
+  
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
@@ -37,21 +39,25 @@ const AddHotel: React.FC = () => {
     if (imageFile) {
       formData.append("img", imageFile);
     }
+    setIsLoading(true)
     try {
       await axios.post("http://localhost:8090/hotels/createHotel", formData);
+      setIsLoading(false)
       alert("Hotel created successfully.");
     } catch (err) {
-      console.error(err);
+      setIsLoading(false)
       alert("Error creating hotel.");
     }
   };
 
   return (
+    <>
+    {isLoading && <LoadingIndicator />}
     <div className="reservation-form background-image">
       <div className="container">
         <div className="row align-it-center align-form">
           <div className="col-lg-12 form-width">
-            <form id="reservation-form" name="gs" onSubmit={handleSubmit}>
+            <form id="reservation-form" style={{backgroundColor: '#f9f9ff'}} name="gs" onSubmit={handleSubmit}>
               <div className="row">
                 <div className="col-lg-12">
                   <h4>  <em>ADD NEW HOTEL</em> </h4>
@@ -109,6 +115,7 @@ const AddHotel: React.FC = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 

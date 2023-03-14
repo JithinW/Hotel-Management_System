@@ -1,7 +1,5 @@
 package com.system.hotel.booking.entity;
 
-import java.time.LocalDate;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,7 +8,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
@@ -23,9 +20,6 @@ public class Payment {
     
     @Column(name = "amount")
     private Double amount;
-    
-    @Column(name = "payment_date")
-    private LocalDate paymentDate;
     
     @JsonIgnore
     @OneToOne
@@ -46,14 +40,6 @@ public class Payment {
 
 	public void setAmount(Double amount) {
 		this.amount = amount;
-	}
-
-	public LocalDate getPaymentDate() {
-		return paymentDate;
-	}
-
-	public void setPaymentDate(LocalDate paymentDate) {
-		this.paymentDate = paymentDate;
 	}
 
 	public Booking getBooking() {

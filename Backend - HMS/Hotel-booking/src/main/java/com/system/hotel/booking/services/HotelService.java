@@ -3,6 +3,7 @@ package com.system.hotel.booking.services;
 import java.util.List;
 import java.util.Optional;
 
+import com.system.hotel.booking.common.RoomAndBookingCountsVO;
 import com.system.hotel.booking.entity.Hotel;
 import com.system.hotel.booking.entity.User;
 
@@ -23,4 +24,10 @@ public interface HotelService {
 	List<Hotel> getHotelsByName(String name);
 
 	List<Hotel> getHotelsByLocation(String location);
+	
+	List<Hotel> getHotelsByPage(int pageNumber);
+	
+	void deleteHotelById(Long hotelId);
+	
+	RoomAndBookingCountsVO getRoomsAndBookingCounts(Long hotelId);
 }
