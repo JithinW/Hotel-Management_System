@@ -23,7 +23,7 @@ public interface BookingRepository extends JpaRepository<Booking, Long>{
             @Param("checkInDate") Date checkInDate,
             @Param("checkOutDate") Date checkOutDate);
 	
-	@Query("SELECT b FROM Booking b WHERE b.hotelId = :hotelId ORDER BY b.id DESC")
+	@Query("SELECT b FROM Booking b WHERE b.hotelId = :hotelId AND b.paymentStatus = true ORDER BY b.id DESC")
 	List<Booking> findBookingsByPage(Pageable pageable, Long hotelId);
 	
 	@Query("SELECT b FROM Booking b WHERE b.user.id = :userId AND b.paymentStatus = true ORDER BY b.id DESC\r\n"

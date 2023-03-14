@@ -47,7 +47,8 @@ public class BookingController {
 
 	@PostMapping("/create")
 	public ResponseEntity<?> createBooking(@RequestBody Booking booking,
-			@RequestParam("hotelRoomTypeId") Long hotelRoomTypeId, @RequestParam("userId") Long userId) {
+			@RequestParam("hotelRoomTypeId") Long hotelRoomTypeId, 
+			@RequestParam("userId") Long userId) {
 		try {
 			BookingIdAndRoomIds bookingIdAndRoomIds = bookingService.createBooking(booking, hotelRoomTypeId, userId);
 			if (!bookingIdAndRoomIds.getRoomIds().isEmpty()) {

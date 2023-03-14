@@ -75,6 +75,8 @@ public class BookingServiceImplementation implements BookingService {
 	public BookingIdAndRoomIds createBooking(Booking booking, Long hotelRoomTypeId, Long userId) {
 		BookingIdAndRoomIds bookingIdAndRoomIds = new BookingIdAndRoomIds();
 		List<Room> bookedRooms = new ArrayList<Room>();
+		HotelRoomType hotelRoomType = hotelRoomTypeRepository.findById(hotelRoomTypeId).orElseThrow(()-> new EntityNotFoundException("Room Type not found"));
+		booking.setHotelId(hotelRoomType.getHotel().getId());
 		List<Booking> existingBookings = bookingRepository
 				.findBookingsByCheckInAndCheckOutDates(booking.getCheckInDate(),
 						booking.getCheckOutDate());
